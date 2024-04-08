@@ -9,23 +9,24 @@ namespace CommandList
     {
         public static void Help()
         {
-            Console.WriteLine("\n  Navigation");
+            Console.WriteLine("\nNavigation");
             Console.WriteLine("  cd <directory>   - Change current directory");
             Console.WriteLine("  ls               - List files and directories in the current directory");
 
-            Console.WriteLine("\n  File operations");
+            Console.WriteLine("\nFile operations etc.");
             Console.WriteLine("  mkdir <directory>- Create a new directory");
             Console.WriteLine("  rm <file>        - Delete a file");
             Console.WriteLine("  rmdir <directory>- Delete a directory");
             Console.WriteLine("  cat <file>       - Display a file");
             Console.WriteLine("  touch <file>     - Create an empty file");
             Console.WriteLine("  miv              - Open MIV");
+            Console.WriteLine("  pwd              - Print working directory");
 
-            Console.WriteLine("\n  System commands");
+            Console.WriteLine("\nSystem commands");
             Console.WriteLine("  reboot           - Reboot the system");
             Console.WriteLine("  help             - Show available commands");
             Console.WriteLine("  cls              - Clear the console screen");
-            Console.WriteLine("  exit             - Shutdown the system\n");
+            Console.WriteLine("  shutdown (exit)  - Shutdown the system\n");
         }
 
         public static string Calc(double a, double b)
@@ -39,15 +40,18 @@ namespace CommandList
             string[] directories = Directory.GetDirectories(currentDirectory);
             string[] files = Directory.GetFiles(currentDirectory);
 
+            Console.ForegroundColor = ConsoleColor.Blue;
             foreach (var directory in directories)
             {
-                Console.WriteLine($"  DIR  : {Path.GetFileName(directory)}");
+                Console.Write(@$"\{Path.GetFileName(directory)} ");
             }
 
+            Console.ForegroundColor = ConsoleColor.Green;
             foreach (var file in files)
             {
-                Console.WriteLine($"  FILE : {Path.GetFileName(file)}");
+                Console.Write($"{Path.GetFileName(file)} ");
             }
+            Console.Write("\n");
         }
 
         public static void Cat(string[] args)

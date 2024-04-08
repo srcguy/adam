@@ -28,18 +28,7 @@ namespace cosmos
             string command = args[0].ToLower();
             switch (command)
             {
-                case "calc":
-                    if (args.Length == 3 && double.TryParse(args[1], out double a) && double.TryParse(args[2], out double b))
-                    {
-                        Console.WriteLine(Commands.Calc(a, b));
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid arguments");
-                    }
-                    break;
-                
-                //file manipulation
+                //file manipulation etc.
                 case "ls":
                     Commands.Ls();
                     break;
@@ -64,9 +53,15 @@ namespace cosmos
                 case "miv":
                     MIV.StartMIV();
                     break;
+                case "pwd":
+                    Console.WriteLine($"{currentDirectory}");
+                    break;
 
                 //system
                 case "exit":
+                    Sys.Power.Shutdown();
+                    break;
+                case "shutdown":
                     Sys.Power.Shutdown();
                     break;
                 case "cls":
@@ -80,11 +75,19 @@ namespace cosmos
                     break;
 
                 //other
-
                 case "date":
                     Console.WriteLine(DateTime.Now);
                     break;
-
+                case "calc":
+                    if (args.Length == 3 && double.TryParse(args[1], out double a) && double.TryParse(args[2], out double b))
+                    {
+                        Console.WriteLine(Commands.Calc(a, b));
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid arguments");
+                    }
+                    break;
             }
             Eve();
         }
@@ -109,7 +112,7 @@ namespace cosmos
         protected override void Run()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("\nAdam b1.0 ");
+            Console.Write("\nAdam b1.1 ");
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("by src_guy");
             Console.ForegroundColor = ConsoleColor.Magenta;
